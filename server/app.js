@@ -8,11 +8,17 @@ const app = express();
 
 const sequelize = require('./util/database')
 
+// const user = require('./Models/userModel');
+
+app.use(cors());
+
 app.use(bodyParser.urlencoded({extended : true}));
 
 app.use(bodyParser.json());
 
-app.use(cors());
+const userRoute = require('./routes/userRoute')
+
+app.use("/user",userRoute);
 
 sequelize.sync();
 
