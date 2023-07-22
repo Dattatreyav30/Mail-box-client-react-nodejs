@@ -70,12 +70,11 @@ const ComposeEmail = () => {
         </button>
       </header>
       <form className="form-compose">
-        <p className="must">*must include @kitty.com</p>
         <input
           onChange={emailHandler}
           className="form-compose-input"
           type="email"
-          placeholder="To :"
+          placeholder="To :  *example@kitty.com"
           value={formData.to}
           required
         />
@@ -87,7 +86,7 @@ const ComposeEmail = () => {
           value={formData.subject}
           required
         />
-        <p className="must">*email must contain atleast 20 characters</p>
+        <p className="must">*Must contain atleast 20 characters</p>
         <div className="editor">
           <Editor
             editorState={editorState}
