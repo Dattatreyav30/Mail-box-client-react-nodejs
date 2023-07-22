@@ -2,10 +2,13 @@ import "./ComposeEmail.css";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import HamBurger from "../HamBurger/HamBurger";
 const ComposeEmail = () => {
   const [editorState, setEditorState] = useState("");
+
+  const [isForm, setIsForm] = useState(false);
 
   const notify = (message) => toast(message);
 
@@ -14,6 +17,15 @@ const ComposeEmail = () => {
     content: "",
     subject: "",
   });
+
+  useEffect(() => {
+    if (formData.to.includes("@kitty.com") && formData.content.length > 10) {
+      setIsForm(true);
+    } else {
+      setIsForm(false);
+    }
+  }, [formData]);
+
   const handler = (state) => {
     setEditorState(state);
     const contentState = state.getCurrentContent();
@@ -46,14 +58,26 @@ const ComposeEmail = () => {
   };
   return (
     <>
-      <h1 className="compose-h1">Compose Email</h1>
-      <form className="form-compose" onSubmit={onSubmitHandler}>
+      <header className="header">
+        <HamBurger />
+        <h1>Compose Email</h1>
+        <button
+          onClick={onSubmitHandler}
+          className="compose-button"
+          disabled={!isForm}
+        >
+          Send
+        </button>
+      </header>
+      <form className="form-compose">
+        <p className="must">*must include @kitty.com</p>
         <input
           onChange={emailHandler}
           className="form-compose-input"
           type="email"
           placeholder="To :"
           value={formData.to}
+          required
         />
         <input
           className="form-compose-input"
@@ -61,15 +85,17 @@ const ComposeEmail = () => {
           placeholder="Subject : "
           onChange={subjectHandler}
           value={formData.subject}
+          required
         />
+        <p className="must">*email must contain atleast 20 characters</p>
         <div className="editor">
           <Editor
             editorState={editorState}
             onEditorStateChange={handler}
             value={formData.content}
+            required
           />
         </div>
-        <button className="compose-button">Send</button>
       </form>
     </>
   );

@@ -1,0 +1,40 @@
+.sidebar {
+  position: fixed;
+  left: -250px;
+  top: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #6f67de;
+  transition: left 0.3s ease;
+  z-index: 1;
+}
+.menu-icon {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-icon span {
+  width: 100%;
+  height: 4px;
+  color: black;
+  background-color: #fff;
+}
+
+.sidebar.open {
+  left: 0;
+}
+ul {
+  margin-top: 60px;
+}
+.link {
+  list-style: none;
+  padding: 1rem;
+  color: white;
+}
