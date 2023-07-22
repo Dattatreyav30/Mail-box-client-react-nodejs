@@ -2,16 +2,21 @@ import { ToastContainer } from "react-toastify";
 import SignUp from "./components/User/SignUp/SignUp";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/User/Login/Login";
+import Profile from "./components/User/Profile/Profile";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <SignUp/>,
+    element: <SignUp />,
   },
   {
-    path : '/login',
-    element : <Login/>
-  }
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
 ]);
 
 const App = () => {

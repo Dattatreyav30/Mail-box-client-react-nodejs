@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
-//   const notify = (message) => toast(message);
+  const notify = (message) => toast(message);
 
   const newUserOnclickHandler = () => {
     navigate("/");
@@ -26,7 +26,19 @@ const Login = () => {
 
   const onSubmitEventHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    const response = await fetch("http://localhost:5000/user/login", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const fetchData = await response.json();
+    notify(fetchData.message);
+    if (response.ok) {
+      localStorage.setItem("token", fetchData.token);
+      navigate("/profile");
+    }
     setFormData({ email: "", password: "" });
   };
 

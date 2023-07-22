@@ -40,3 +40,28 @@ exports.postUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      let userData = await User.findOne({
+        where: { email: email },
+      });
+      if (!userData) {
+        return res.status(401).json({ message: "user not found" });
+      }
+      const comparePassword = await bcrypt.compare(password, userData.password);
+  
+      if (!comparePassword) {
+        return res.status(401).json({ message: "password is incorrect" }); 
+      }
+  
+      res.status(200).json({
+        token: generateAccesstoken(userData.id),
+        message: "user logged in succesfully",
+      });
+    } catch (err) {
+      res.status(500).json({ message: err.message }); 
+    }
+  };
