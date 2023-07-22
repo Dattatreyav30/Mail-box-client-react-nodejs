@@ -1,6 +1,7 @@
 import "./ComposeEmail.css";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
 const ComposeEmail = () => {
@@ -35,11 +36,13 @@ const ComposeEmail = () => {
         "Content-Type": "application/json",
         token: localStorage.getItem("token"),
       },
+      body: JSON.stringify(formData),
     });
 
-    const fecthedResponse = response.json();
+    const fecthedResponse = await response.json();
 
     notify(fecthedResponse.message);
+    setFormData({ to: "", subject: "", content: "" });
   };
   return (
     <>
@@ -50,15 +53,21 @@ const ComposeEmail = () => {
           className="form-compose-input"
           type="email"
           placeholder="To :"
+          value={formData.to}
         />
         <input
           className="form-compose-input"
           type="text"
-          placeholder="Sunject : "
+          placeholder="Subject : "
           onChange={subjectHandler}
+          value={formData.subject}
         />
         <div className="editor">
-          <Editor editorState={editorState} onEditorStateChange={handler} />
+          <Editor
+            editorState={editorState}
+            onEditorStateChange={handler}
+            value={formData.content}
+          />
         </div>
         <button className="compose-button">Send</button>
       </form>

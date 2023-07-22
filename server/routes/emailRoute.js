@@ -1,8 +1,11 @@
-import { Router } from "express";
+const express = require("express");
 
-const router = Router();
+const router = express.Router();
 
-router.post('send-email')
+const auth = require("../middleware/authorization");
 
+const emailController = require("../Controllers/emailController");
 
-module.exports = router
+router.post("/send-email", auth.authorization, emailController.postEmail);
+
+module.exports = router;
