@@ -3,6 +3,7 @@ import SignUp from "./components/User/SignUp/SignUp";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/User/Login/Login";
 import Profile from "./components/User/Profile/Profile";
+import ComposeEmail from "./components/Mail/ComposeEmail/ComposeEmail";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <Profile />,
   },
+  {
+    path:'/open-mail',
+    element : <ComposeEmail/>
+  }
 ]);
 
 const App = () => {
