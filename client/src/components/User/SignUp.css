@@ -1,0 +1,48 @@
+.form-signup {
+    display: flex;
+    flex-direction: column;
+    margin: 6rem 25rem 10rem 25rem;
+    border: 2px solid rgb(220, 212, 212);
+    border-radius: 5px;
+    padding: 2rem;
+  }
+  
+  .form-signup-input {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border: 1px solid rgb(92, 82, 82);
+    border-radius: 5px;
+  }
+  input:focus {
+    outline: #3a0d5a;
+  }
+  .form-signup-button {
+    font-weight: 900;
+    color: white;
+    background-color: rgb(121, 121, 210);
+    padding: 0.7rem;
+    margin: 0.2rem;
+    border-radius: 22px;
+    cursor: pointer;
+    border: 1.5px solid rgb(255, 255, 255);
+  }
+  
+  .form-signup-button:hover {
+    background-color: #3a0d5a;
+  }
+  .form-signup-name {
+    text-align: center;
+  }
+  
+  .isValid {
+    display: block;
+    cursor: pointer;
+  }
+  
+  .notValid {
+    cursor: not-allowed;
+  }
+  
+  .notValidInput {
+    border: 1.5px solid red;
+  }
