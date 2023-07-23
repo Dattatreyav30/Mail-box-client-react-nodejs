@@ -24,6 +24,10 @@ const Email = sequelize.define("email", {
     type: Sequelize.TEXT,
     allowNull: false,
   },
+  isRead: {
+    type: Sequelize.BOOLEAN,
+    allowNull: true,
+  },
 });
 
 module.exports = Email;

@@ -7,6 +7,7 @@ import ComposeEmail from "./components/Mail/ComposeEmail/ComposeEmail";
 import EmailSent from "./components/Mail/EmailSent/EmailSent";
 import ViewEmail from "./components/Mail/ViewEmail/ViewEmail";
 import EmailRecieved from "./components/Mail/EmailRecieved/EmailRecieved";
+import ViewInboxEmail from "./components/Mail/ViewInboxEmail/ViewInboxEmail";
 
 const router = createBrowserRouter([
   {
@@ -38,9 +39,13 @@ const router = createBrowserRouter([
     element: <ViewEmail />,
   },
   {
-    path : "/recieved-mail",
-    element : <EmailRecieved/>
-  }
+    path: "/recieved-mail",
+    element: <EmailRecieved />,
+  },
+  {
+    path: "/view-inbox-email/:id",
+    element: <ViewInboxEmail />,
+  },
 ]);
 
 const App = () => {

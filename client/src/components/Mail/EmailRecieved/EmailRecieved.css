@@ -1,0 +1,11 @@
+.email-subject-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .green-dot {
+    font-size: 5rem;
+    color: green;
+  }
+  
