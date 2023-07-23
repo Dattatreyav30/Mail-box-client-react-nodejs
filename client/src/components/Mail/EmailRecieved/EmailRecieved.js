@@ -13,9 +13,9 @@ const EmailRecieved = () => {
   const navigate = useNavigate();
   const notify = (message) => toast(message);
 
-  useEffect(() => {
+  setInterval(() => {
     fetchData();
-  }, []);
+  }, 2000);
 
   console.log(mails);
 
