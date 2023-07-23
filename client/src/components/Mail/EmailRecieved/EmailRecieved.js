@@ -5,18 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { recievedMailActions } from "../../store/redux-store";
 
 import "./EmailRecieved.css";
+import { toast } from "react-toastify";
 
 const EmailRecieved = () => {
   const mails = useSelector((state) => state.mailRecieve.mailRecieve);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isRead, setIsRead] = useState(false);
+  const notify = (message) => toast(message);
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(mails)
+  console.log(mails);
 
   const viewContentHandler = async (id) => {
     navigate(`/view-inbox-email/${id}`);
@@ -29,7 +30,7 @@ const EmailRecieved = () => {
     });
 
     if (response.ok) {
-      setIsRead(true);
+      console.log("succesfull");
     }
   };
 
@@ -52,6 +53,22 @@ const EmailRecieved = () => {
       console.log(err);
     }
   };
+
+  const deleteHandler = async (id) => {
+    const response = await fetch(
+      `http://localhost:5000/email/delete-email/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
+      }
+    );
+    const fetchedData = await response.json();
+    notify(fetchedData.message);
+    await fetchData();
+  };
   return (
     <div>
       <div className="email-h1">
@@ -65,26 +82,34 @@ const EmailRecieved = () => {
           {mails.map((mail) => (
             <tr key={mail.id}>
               <div>
-                <td className="email-subject-container ">
-                  <Link
-                    onClick={() => {
-                      viewContentHandler(mail.id);
-                    }}
-                  >
-                    {mail.subject}
-                  </Link>
-                  {!mail.isRead && (
-                    <h1
-                      style={{
-                        fontSize: "6rem",
-                        color: "green",
-                        marginTop: "-3.5rem",
+                {!mail.toTrue && (
+                  <td className="email-subject-container ">
+                    <Link
+                      onClick={() => {
+                        viewContentHandler(mail.id);
                       }}
                     >
-                      .
-                    </h1>
-                  )}
-                </td>
+                      {mail.subject}
+                    </Link>
+                    {!mail.isRead && (
+                      <h1
+                        style={{
+                          fontSize: "6rem",
+                          color: "green",
+                          marginTop: "-3.5rem",
+                        }}
+                      >
+                        .
+                      </h1>
+                    )}
+                    <button
+                      onClick={() => deleteHandler(mail.id)}
+                      className="delete-btn"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                )}
               </div>
             </tr>
           ))}

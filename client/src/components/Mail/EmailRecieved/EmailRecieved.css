@@ -1,11 +1,19 @@
 .email-subject-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .green-dot {
-    font-size: 5rem;
-    color: green;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.green-dot {
+  font-size: 5rem;
+  color: green;
+}
+.delete-btn {
+  color: white;
+  background-color: red;
+  border: 1px solid white;
+  width: 5rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+}

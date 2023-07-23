@@ -18,4 +18,16 @@ router.get(
 
 router.get("/read", auth.authorization, emailController.isRead);
 
+router.delete(
+  "/delete-email/:id",
+  auth.authorization,
+  emailController.deletToEmail
+);
+
+router.delete(
+  "/delete-email-from/:id",
+  auth.authorization,
+  emailController.deletFromEmail
+);
+
 module.exports = router;

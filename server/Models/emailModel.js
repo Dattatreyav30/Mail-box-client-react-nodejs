@@ -28,6 +28,12 @@ const Email = sequelize.define("email", {
     type: Sequelize.BOOLEAN,
     allowNull: true,
   },
+  fromTrue: {
+    type: Sequelize.BOOLEAN,
+  },
+  toTrue: {
+    type: Sequelize.BOOLEAN,
+  },
 });
 
 module.exports = Email;
