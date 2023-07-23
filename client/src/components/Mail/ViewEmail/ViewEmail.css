@@ -1,0 +1,25 @@
+/* You can adjust these styles to fit your specific design */
+.email-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.email-subject {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.email-content {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.email-loading {
+  font-size: 16px;
+  color: #999;
+}

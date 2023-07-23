@@ -1,0 +1,39 @@
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+
+table th {
+  background-color: #f2f2f2;
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table td {
+  border: 1.5px solid #030202;
+  padding: 8px;
+  text-align: left;
+}
+
+table tr:hover {
+  background-color: #ae9b9b;
+  cursor: pointer;
+}
+table tr{
+  background-color: #fffbfb;
+}
+.email-h1{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blue;
+  color: white;
+  padding: 1rem;
+}
+.email-h1 h1{
+  align-items: center;
+}

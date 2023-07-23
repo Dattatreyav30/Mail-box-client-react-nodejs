@@ -5,8 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import HamBurger from "../HamBurger/HamBurger";
+import { useDispatch } from "react-redux";
+import { mailActions } from "../../store/redux-store";
 const ComposeEmail = () => {
   const [editorState, setEditorState] = useState("");
+
+  const dispatch = useDispatch();
 
   const [isForm, setIsForm] = useState(false);
 
@@ -54,6 +58,7 @@ const ComposeEmail = () => {
     const fecthedResponse = await response.json();
 
     notify(fecthedResponse.message);
+    dispatch(mailActions.addEmail(formData));
     setFormData({ to: "", subject: "", content: "" });
   };
   return (
