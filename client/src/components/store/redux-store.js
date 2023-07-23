@@ -2,6 +2,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const intialMailState = { mails: [] };
 
+const intialRecivedState = { mailRecieve: [] };
+
 const mailSlice = createSlice({
   name: "email",
   initialState: intialMailState,
@@ -15,10 +17,21 @@ const mailSlice = createSlice({
   },
 });
 
+const mailRecieveSlice = createSlice({
+  name: "mail-recieve",
+  initialState: intialRecivedState,
+  reducers: {
+    fetchAddEmail(state, action) {
+      state.mailRecieve = [...action.payload];
+    },
+  },
+});
+
 const store = configureStore({
-  reducer: { mail: mailSlice.reducer },
+  reducer: { mail: mailSlice.reducer, mailRecieve: mailRecieveSlice.reducer },
 });
 
 export const mailActions = mailSlice.actions;
+export const recievedMailActions = mailRecieveSlice.actions;
 
 export default store;
