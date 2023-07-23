@@ -19,10 +19,13 @@ const HamBurger = () => {
     navigate("/sent");
   };
 
-  const composeHandler = () =>{
-    navigate("/open-mail")
-  }
+  const composeHandler = () => {
+    navigate("/open-mail");
+  };
 
+  const inboxHandler = () => {
+    navigate("/recieved-mail");
+  };
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
       <div className="menu-icon" onClick={handler}>
@@ -31,9 +34,14 @@ const HamBurger = () => {
         <span></span>
       </div>
       <ul>
-      <Link>
+        <Link>
           <li onClick={composeHandler} className="link">
             Compose
+          </li>
+        </Link>
+        <Link>
+          <li onClick={inboxHandler} className="link">
+            Inbox
           </li>
         </Link>
         <Link>

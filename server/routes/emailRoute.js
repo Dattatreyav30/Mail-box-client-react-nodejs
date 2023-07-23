@@ -10,5 +10,6 @@ router.post("/send-email", auth.authorization, emailController.postEmail);
 
 router.get("/get-emails", auth.authorization, emailController.getMails);
 
+router.get("/get-recieved-emails",auth.authorization,emailController.getRecievedEmails)
 
 module.exports = router;

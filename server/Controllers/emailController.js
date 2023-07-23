@@ -34,6 +34,22 @@ exports.getMails = async (req, res) => {
       .status(200)
       .json({ message: "email fetched succesfully", mails: mails });
   } catch (err) {
-    console.log(err)
+    console.log(err);
+  }
+};
+
+exports.getRecievedEmails = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.userId);
+    const mails = await Email.findAll({
+      where: {
+        to: user.email,
+      },
+    });
+    res
+      .status(200)
+      .json({ message: "email fetched succesfully", mails: mails });
+  } catch (err) {
+    console.log(err);
   }
 };

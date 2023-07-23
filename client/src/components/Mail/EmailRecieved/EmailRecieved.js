@@ -4,10 +4,10 @@ import HamBurger from "../HamBurger/HamBurger";
 import { useDispatch, useSelector } from "react-redux";
 import { recievedMailActions } from "../../store/redux-store";
 
-import "./EmailSent.css";
+import "./EmailRecieved.css";
 
-const EmailRecieve = () => {
-  const mails = useSelector((state) => state.mail.mails);
+const EmailRecieved = () => {
+  const mails = useSelector((state) => state.mailRecieve.mailRecieve);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,9 +32,8 @@ const EmailRecieve = () => {
           },
         }
       );
-
       const data = await response.json();
-      dispatch(recievedMailActions.fetchAdd(data.mails));
+      dispatch(recievedMailActions.fetchAddEmail(data.mails));
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +43,7 @@ const EmailRecieve = () => {
     <div>
       <div className="email-h1">
         <header>
-          <h1>Email sent</h1>
+          <h1>Email recieved</h1>
           <HamBurger />
         </header>
       </div>
@@ -69,4 +68,4 @@ const EmailRecieve = () => {
   );
 };
 
-export default EmailRecieve;
+export default EmailRecieved;
